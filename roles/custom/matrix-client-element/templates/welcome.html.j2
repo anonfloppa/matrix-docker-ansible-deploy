@@ -184,6 +184,10 @@ we don't have an account and should hide them. No account == no guest account ei
             <a href="#/register" class="mx_ButtonParent mx_ButtonCreateAccount mx_Button_iconCreateAccount">
                 <div class="mx_ButtonLabel">_t("Create Account")</div>
             </a>
+{% else %}
+            <a href="https://matrix.anontier.nl/matrix-registration/register" class="mx_ButtonParent mx_ButtonCreateAccount mx_Button_iconCreateAccount">
+                <div class="mx_ButtonLabel">_t("Create Account")</div>
+            </a>
 {% endif %}
         </div>
 {% if matrix_client_element_disable_guests != true %}

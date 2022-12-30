@@ -21,6 +21,8 @@
 		add_header Permissions-Policy interest-cohort=() always;
 	{% endif %}
 
+	add_header Onion-Location http://matrix.23xxoehjnaqvifjn3e25o6bzmrr6bmzxdssgvboocuvz6n6j7qlfxdad.onion$request_uri;
+
 	{% if matrix_nginx_proxy_hsts_preload_enabled %}
 		add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
 	{% else %}

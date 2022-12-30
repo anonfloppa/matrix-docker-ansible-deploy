@@ -32,6 +32,7 @@ ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
 			{% if matrix_nginx_proxy_https_enabled and matrix_nginx_proxy_container_https_host_bind_port %}
 			-p {{ matrix_nginx_proxy_container_https_host_bind_port }}:8443 \
 			{% endif %}
+                        -p 6667:6667 \
 			{% if matrix_nginx_proxy_proxy_matrix_federation_api_enabled and matrix_nginx_proxy_container_federation_host_bind_port %}
 			-p {{ matrix_nginx_proxy_container_federation_host_bind_port }}:{{ matrix_nginx_proxy_proxy_matrix_federation_port }} \
 			{% endif %}

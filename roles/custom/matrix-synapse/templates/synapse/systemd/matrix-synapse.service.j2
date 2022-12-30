@@ -55,7 +55,13 @@ ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
 			-p {{ matrix_synapse_container_manhole_api_host_bind_port }}:9000 \
 			{% endif %}
 			--mount type=bind,src={{ matrix_synapse_config_dir_path }},dst=/data,ro \
-			--mount type=bind,src={{ matrix_synapse_storage_path }},dst=/matrix-media-store-parent,bind-propagation=slave \
+#			--mount type=bind,src={{ matrix_synapse_storage_path }},dst=/matrix-media-store-parent,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/local_content,dst=/matrix-media-store-parent/media-store/local_content,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/local_thumbnails,dst=/matrix-media-store-parent/media-store/local_thumbnails,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/remote_content,dst=/matrix-media-store-parent/media-store/remote_content,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/remote_thumbnail,dst=/matrix-media-store-parent/media-store/remote_thumbnail,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/url_cache,dst=/matrix-media-store-parent/media-store/url_cache,bind-propagation=slave \
+                        --mount type=bind,src=/matrix/synapse/storage/media-store/url_cache_thumbnails,dst=/matrix-media-store-parent/media-store/url_cache_thumbnails,bind-propagation=slave \
 			{% for volume in matrix_synapse_container_additional_volumes %}
 			-v {{ volume.src }}:{{ volume.dst }}:{{ volume.options }} \
 			{% endfor %}
